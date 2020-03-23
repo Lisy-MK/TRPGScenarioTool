@@ -394,11 +394,12 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("MS UI Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label11.ForeColor = System.Drawing.Color.Turquoise;
-            this.label11.Location = new System.Drawing.Point(150, 70);
+            this.label11.Location = new System.Drawing.Point(13, 72);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 13);
+            this.label11.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.label11.Size = new System.Drawing.Size(55, 13);
             this.label11.TabIndex = 7;
-            this.label11.Text = "var:1.0";
+            this.label11.Text = "ver:1.0.1";
             // 
             // dataName1
             // 

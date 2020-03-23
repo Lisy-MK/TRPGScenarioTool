@@ -13,6 +13,8 @@ namespace TRPGScenarioTool
 {
     public partial class Form1 : Form
     {
+        bool isEdit;
+
         public Form1()
         {
             InitializeComponent();
@@ -26,18 +28,18 @@ namespace TRPGScenarioTool
             {
                 systemList.Items.Add(f.Name);
             }
+
+            isEdit = true;
         }
 
-        bool isEdit1; 
-        bool isEdit2; 
 
         private void FileDataClear_Click(object sender, EventArgs e)
         {
+            //フォルダ生成用入力部・編集可否のリセット
             systemName.Text = "";
             scenarioName.Text = "";
             campaignName.Text = "単発";
-            isEdit1 = true;
-            isEdit2 = true;
+            isEdit = true;
         }
 
         private void New_Click(object sender, EventArgs e)
@@ -170,16 +172,14 @@ namespace TRPGScenarioTool
         {
             Mode();
 
-            isEdit1 = true;
-            isEdit2 = true;
+            isEdit = true;
         }
 
         private void View_Click(object sender, EventArgs e)
         {
             Mode();
 
-            isEdit1 = false;
-            isEdit2 = false;
+            isEdit = true;
         }
 
         private void PredataSave_Click(object sender, EventArgs e)
@@ -313,7 +313,7 @@ namespace TRPGScenarioTool
         {
             loadData1();
 
-            box1.ReadOnly = !isEdit1;
+            box1.ReadOnly = !isEdit;
             save1.Enabled = true;
 
             if(dataName1.Text == dataName2.Text)
@@ -327,7 +327,7 @@ namespace TRPGScenarioTool
         {
             loadData2();
 
-            box2.ReadOnly = !isEdit2;
+            box2.ReadOnly = !isEdit;
             save2.Enabled = true;
 
             if (dataName1.Text == dataName2.Text)
