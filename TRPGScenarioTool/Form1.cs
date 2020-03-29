@@ -29,9 +29,42 @@ namespace TRPGScenarioTool
                 systemList.Items.Add(f.Name);
             }
 
+            StreamReader sr = new StreamReader(Directory.GetCurrentDirectory()
+                + "/" + "SystemFolder"
+                + "/" + "system.txt",
+                Encoding.GetEncoding("Shift_JIS"));
+
+            string str = sr.ReadToEnd();
+
+            sr.Close();
+            
+            for(int no = 0; no < colorMode.Items.Count; no++)
+            {
+                if(str == colorMode.Items[no].ToString())
+                {
+                    colorMode.SelectedIndex = no;
+                    break;
+                }
+            }
+
             isEdit = true;
         }
 
+        private void ColorSetUp(string str)
+        {
+            if (str == "ライト")
+            {
+                SetColor(Color.White, Color.WhiteSmoke, Color.Black, Color.MediumTurquoise);
+            }
+            if (str == "ダーク")
+            {
+                SetColor(Color.Black, Color.DimGray, Color.White, Color.MediumTurquoise);
+            }
+            if (str == "サクラ")
+            {
+                SetColor(Color.SeaShell, Color.Snow, Color.Black, Color.LightCoral);
+            }
+        }
 
         private void FileDataClear_Click(object sender, EventArgs e)
         {
@@ -446,6 +479,79 @@ namespace TRPGScenarioTool
             {
                 save2_Click(sender, e);
             }
+        }
+
+        private void SetColor(Color baseColor, Color areaColor, Color fontColor, Color titleColor)
+        {
+            this.BackColor = baseColor;
+
+            foreach (Control item in this.Controls)
+            {
+                item.BackColor = baseColor;
+                item.ForeColor = fontColor;
+            }
+
+            foreach(Control item in groupBox1.Controls)
+            {
+                item.BackColor = baseColor;
+                item.ForeColor = fontColor;
+            }
+
+            foreach(Control item in groupBox2.Controls)
+            {
+                item.BackColor = baseColor;
+                item.ForeColor = fontColor;
+            }
+
+            foreach(Control item in groupBox3.Controls)
+            {
+                item.BackColor = baseColor;
+                item.ForeColor = fontColor;
+            }
+
+            foreach(Control item in groupBox4.Controls)
+            {
+                item.BackColor = baseColor;
+                item.ForeColor = fontColor;
+            }
+
+            foreach(Control item in groupBox5.Controls)
+            {
+                item.BackColor = baseColor;
+                item.ForeColor = fontColor;
+            }
+
+            foreach (Control item in groupBox6.Controls)
+            {
+                item.BackColor = baseColor;
+                item.ForeColor = fontColor;
+            }
+
+            preBox.BackColor = areaColor;
+            box1.BackColor = areaColor;
+            box2.BackColor = areaColor;
+            titleLabel.ForeColor = titleColor;
+            versionLabel.ForeColor = titleColor;
+        }
+
+        private void ColorMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string str = colorMode.SelectedItem.ToString();
+
+            ColorSetUp(str);
+
+            // 文字コードを指定
+            Encoding enc = Encoding.GetEncoding("Shift_JIS");
+
+            StreamWriter writer = new StreamWriter(System.IO.Directory.GetCurrentDirectory()
+                    + "/" + "SystemFolder"
+                    + "/" + "system.txt",
+                    false,
+                    enc);
+
+            writer.Write(str);
+
+            writer.Close();
         }
     }
 }
